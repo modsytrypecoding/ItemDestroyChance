@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ItemsBreakPlugin:jar">
+    <output-path>$PROJECT_DIR$/../../../plugins</output-path>
+    <root id="archive" name="ItemsBreakPlugin.jar">
+      <element id="module-output" name="ItemDestroyChance" />
+    </root>
+  </artifact>
+</component>

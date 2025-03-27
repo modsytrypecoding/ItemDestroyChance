@@ -1,0 +1,5 @@
+destroy-chance: 0.4
+
+messages:
+  anvil-destroyed: "&cDein Item wurde beim Schmieden zerstört!"
+  enchant-destroyed: "&cDein Item wurde beim Verzaubern zerstört!"
