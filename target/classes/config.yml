@@ -3,3 +3,10 @@ destroy-chance: 0.4
 messages:
   anvil-destroyed: "&cDein Item wurde beim Schmieden zerstört!"
   enchant-destroyed: "&cDein Item wurde beim Verzaubern zerstört!"
+
+  command:
+    no-permission: "&cDu hast keine Berechtigung, diesen Befehl auszuführen."
+    current-chance: "&eAktuelle Zerstörungswahrscheinlichkeit: &a%chance%"
+    invalid-value: "&cBitte gib eine gültige Zahl zwischen 0.0 und 1.0 ein."
+    set-success: "&aDie neue Zerstörungswahrscheinlichkeit wurde auf &b%chance% &agesetzt."
+    set-usage: "&cVerwendung: /destroychance [set <Wert>]"

@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,20 +27,26 @@ public class ItemUseListener implements Listener {
     }
 
     @EventHandler
-    public void onAnvilUse(PrepareAnvilEvent event) {
-        AnvilInventory inventory = event.getInventory();
-        ItemStack item1 = inventory.getItem(0); //item Slot kanns links im Anvil menu
-        ItemStack item2 = inventory.getItem(1); //item Slot rechts daneben
+    public void onAnvilResultClick(InventoryClickEvent event) {
+        if (!(event.getWhoClicked() instanceof Player player)) return;
 
-        if (item1 == null || item2 == null) return;
+        if (!(event.getInventory() instanceof AnvilInventory inventory)) return;
 
-        if (random.nextDouble() < config.getDouble("destroy-chance", 0.4)) { //random Zahl wird mit eingestellter Zahl abgeglichen default value = 0.4
-            inventory.setItem(0, null); //setzt beide Felder Null --> Items verschwinden
+        // Slot 2 = Ergebnis-Slot im Amboss
+        if (event.getRawSlot() != 2) return;
+
+        ItemStack result = event.getCurrentItem();
+        if (result == null || result.getType() == Material.AIR) return;
+
+        if (random.nextDouble() < config.getDouble("destroy-chance", 0.4)) {
+            // verhindere das Herausnehmen, wenn random kleiner als eingestellte Chance
+            event.setCancelled(true);
+
+            // lösche beide Eingabe-Items
+            inventory.setItem(0, null);
             inventory.setItem(1, null);
 
-            if (!inventory.getViewers().isEmpty() && inventory.getViewers().get(0) instanceof Player player) {
-                sendMessage(player, "messages.anvil-destroyed"); //config Message
-            }
+            sendMessage(player, "messages.anvil-destroyed");
         }
     }
 

@@ -3,3 +3,8 @@ version: '1.0-SNAPSHOT'
 main: org.Modstrype.itemsBreakPlugin.Main.Main
 api-version: '1.21'
 author: ModstrypeCoding
+commands:
+  destroychance:
+    description: Zeigt oder ändert die Zerstörungswahrscheinlichkeit.
+    usage: /destroychance [set <Wert>]
+    permission: op
